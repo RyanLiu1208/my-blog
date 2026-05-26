@@ -28,15 +28,15 @@ body {
   position: fixed;
   inset: 0;
   z-index: -4;
-  opacity: 0.34;
+  opacity: 0.16;
 }
 
 .aurora {
   position: fixed;
   width: 44rem;
   height: 44rem;
-  filter: blur(80px);
-  opacity: 0.42;
+  filter: blur(110px);
+  opacity: 0.22;
   border-radius: 999px;
   z-index: -3;
   animation: drift 14s ease-in-out infinite alternate;
@@ -50,6 +50,7 @@ body {
   background-image: linear-gradient(rgba(56, 232, 255, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(56, 232, 255, 0.07) 1px, transparent 1px);
   background-size: 54px 54px;
+  opacity: .55;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 80%);
 }
 
@@ -156,13 +157,27 @@ pre { min-height: 420px; margin: 0; padding: 1.3rem; white-space: pre-wrap; font
 
 .posts-section, .lab-section, .api-section { padding: 4rem 0; }
 .section-heading { max-width: 680px; margin-bottom: 2rem; }
-.post-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.featured-article {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border: 1px solid rgba(116, 211, 255, 0.28);
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(56, 232, 255, .10), rgba(168, 85, 247, .07));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .24);
+}
+.featured-article h3 { margin: .8rem 0; font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -.04em; }
+.featured-article p { max-width: 860px; color: var(--muted); line-height: 1.85; }
+.article-content { margin-top: 1rem; display: grid; gap: .75rem; }
+.article-content p { margin: 0; }
+.post-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
 .post-card {
   position: relative;
   overflow: hidden;
   border-radius: 1.4rem;
   padding: 1.25rem;
-  min-height: 260px;
+  min-height: 230px;
   transition: transform .25s, border-color .25s;
 }
 .post-card::before {
@@ -178,6 +193,17 @@ pre { min-height: 420px; margin: 0; padding: 1.3rem; white-space: pre-wrap; font
 .post-card h3 { font-size: 1.35rem; margin: 1.4rem 0 .75rem; }
 .post-card p { color: var(--muted); line-height: 1.7; }
 .post-meta { display: flex; justify-content: space-between; color: #6f86aa; font-size: .9rem; margin-top: 1.5rem; }
+.post-card button {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--cyan);
+  font-weight: 800;
+  cursor: pointer;
+  padding: 0;
+}
 
 .lab-card { border-radius: 1.4rem; overflow: hidden; }
 .terminal-body { min-height: 230px; padding: 1.25rem; font: 500 .98rem/1.8 "JetBrains Mono", monospace; color: #bdf7ff; }
