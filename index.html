@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="一个 Trae 风格的霓虹代码特效个人博客，支持 GitHub Pages 直接打开。"
+    />
+    <title>Neon Trae Blog | Code Beyond Imagination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="matrixCanvas" aria-hidden="true"></canvas>
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="grid-overlay" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark">T</span>
+        <span>Neon Trae Blog</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#posts">文章</a>
+        <a href="#lab">代码实验室</a>
+        <a href="#api">后端 API</a>
+        <a href="https://github.com/RyanLiu1208/my-blog" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">AI Coding · Blog · Full Stack</p>
+          <h1>
+            把灵感写进
+            <span class="gradient-text">流动的代码星河</span>
+          </h1>
+          <p class="hero-text">
+            一个面向开发者的个人博客模板：融合 Trae 风格霓虹界面、代码雨背景、打字机命令行、玻璃拟态卡片与后端 API 示例。
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#posts">探索文章</a>
+            <a class="btn ghost" href="#lab">进入代码实验室</a>
+          </div>
+          <div class="stats" aria-label="博客统计">
+            <div><strong>24K</strong><span>代码粒子</span></div>
+            <div><strong>99ms</strong><span>灵感响应</span></div>
+            <div><strong>∞</strong><span>创造力</span></div>
+          </div>
+        </div>
+
+        <aside class="code-panel" aria-label="动态代码预览">
+          <div class="panel-top">
+            <span></span><span></span><span></span>
+            <p>trae-blog.ts</p>
+          </div>
+          <pre><code id="typewriter"></code><span class="cursor">|</span></pre>
+        </aside>
+      </section>
+
+      <section id="posts" class="section-shell posts-section">
+        <div class="section-heading">
+          <p class="eyebrow">Featured Posts</p>
+          <h2>最新文章</h2>
+          <p>用卡片承载想法，用动效点燃阅读体验。</p>
+        </div>
+        <div class="post-grid" id="postGrid"></div>
+      </section>
+
+      <section id="lab" class="section-shell lab-section">
+        <div class="section-heading">
+          <p class="eyebrow">Code Lab</p>
+          <h2>实时特效控制台</h2>
+          <p>点击按钮生成代码碎片，感受像 IDE 一样流动的创作氛围。</p>
+        </div>
+        <div class="lab-card">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <strong>neon-terminal</strong>
+          </div>
+          <div class="terminal-body" id="terminalBody"></div>
+          <button class="btn primary" id="runSnippet">运行代码特效</button>
+        </div>
+      </section>
+
+      <section id="api" class="section-shell api-section">
+        <div class="api-card">
+          <div>
+            <p class="eyebrow">Backend Ready</p>
+            <h2>内置 Node.js 后端 API 示例</h2>
+            <p>
+              前端可以直接部署到 GitHub Pages；后端 `server.js` 提供文章接口，适合后续部署到云平台。
+            </p>
+          </div>
+          <div class="api-endpoints">
+            <code>GET /api/posts</code>
+            <code>GET /api/health</code>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Neon Trae Blog. Built with sparks, code and imagination.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
