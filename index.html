@@ -54,24 +54,72 @@
       <section id="experiment" class="section-shell experiment-section">
         <div class="section-heading">
           <p class="eyebrow">Experiment</p>
-          <h2>凸透镜光路模拟</h2>
-          <p>拖动下方焦距控制条，观察光线轨迹、焦点 F、像距 v 和散射点如何改变。</p>
+          <h2 id="lensTitle">凸透镜光路模拟</h2>
+          <p id="lensDesc">拖动下方控制条，观察光线轨迹、焦点 F、像距 v 和散射点如何改变。</p>
         </div>
         <div class="experiment-card">
-          <canvas id="opticsCanvas" width="1200" height="620" aria-label="凸透镜光路模拟图"></canvas>
+          <canvas id="opticsCanvas" width="1200" height="620" aria-label="光学光路模拟图"></canvas>
           <div class="control-panel">
-            <div class="metric">
-              <span>焦距 f</span>
-              <strong id="focalValue">160 mm</strong>
+            <div class="control-row">
+              <div class="control-group">
+                <span class="control-label">光学元件类型</span>
+                <div class="type-selector">
+                  <button class="type-btn active" data-type="convex-lens">凸透镜</button>
+                  <button class="type-btn" data-type="concave-lens">凹透镜</button>
+                  <button class="type-btn" data-type="convex-mirror">凸面镜</button>
+                  <button class="type-btn" data-type="concave-mirror">凹面镜</button>
+                </div>
+              </div>
             </div>
-            <label class="slider-wrap">
-              <span>短焦距</span>
-              <input id="focalSlider" type="range" min="70" max="260" value="160" />
-              <span>长焦距</span>
-            </label>
-            <div class="metric">
-              <span>像距 v</span>
-              <strong id="imageDistance">—</strong>
+            <div class="control-row">
+              <div class="control-item">
+                <span class="control-label">焦距 f</span>
+                <strong id="focalValue" class="control-value">160 mm</strong>
+                <input id="focalSlider" type="range" min="50" max="300" value="160" />
+                <span class="range-labels">50mm — 300mm</span>
+              </div>
+              <div class="control-item">
+                <span class="control-label">物距 u</span>
+                <strong id="objectDistanceValue" class="control-value">330 mm</strong>
+                <input id="objectDistanceSlider" type="range" min="100" max="500" value="330" />
+                <span class="range-labels">100mm — 500mm</span>
+              </div>
+              <div class="control-item">
+                <span class="control-label">物体高度</span>
+                <strong id="objectHeightValue" class="control-value">145 px</strong>
+                <input id="objectHeightSlider" type="range" min="50" max="200" value="145" />
+                <span class="range-labels">50px — 200px</span>
+              </div>
+            </div>
+            <div class="control-row">
+              <div class="control-item">
+                <span class="control-label">像距 v</span>
+                <strong id="imageDistance" class="control-value highlight">—</strong>
+              </div>
+              <div class="control-item">
+                <span class="control-label">放大倍率</span>
+                <strong id="magnification" class="control-value highlight">—</strong>
+              </div>
+              <div class="control-item">
+                <span class="control-label">散射密度</span>
+                <strong id="scatterDensityValue" class="control-value">中等</strong>
+                <input id="scatterDensitySlider" type="range" min="10" max="60" value="30" />
+                <span class="range-labels">稀疏 — 密集</span>
+              </div>
+            </div>
+            <div class="control-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="showGrid" checked />
+                <span>显示网格</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="showLabels" checked />
+                <span>显示标签</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="showScatter" checked />
+                <span>显示散射效果</span>
+              </label>
             </div>
           </div>
         </div>
@@ -79,31 +127,146 @@
           <span><i class="ray-yellow"></i>入射/折射光线</span>
           <span><i class="ray-blue"></i>主光轴</span>
           <span><i class="ray-purple"></i>焦点与成像辅助</span>
+          <span><i class="ray-green"></i>物体</span>
         </div>
       </section>
 
       <section id="knowledge" class="section-shell knowledge-section">
         <div class="section-heading">
           <p class="eyebrow">Knowledge</p>
-          <h2>实验知识点</h2>
+          <h2>光学基础知识</h2>
         </div>
+        
         <div class="knowledge-grid">
           <article>
-            <h3>1. 焦距是什么？</h3>
-            <p>焦距 f 是透镜光心到焦点 F 的距离。平行于主光轴的光线经过凸透镜后，会近似汇聚到另一侧焦点。</p>
+            <h3>1. 什么是透镜？</h3>
+            <p>透镜是由透明材料（如玻璃、树脂）制成的光学元件，通过折射改变光线的传播方向。透镜分为两大类：凸透镜（汇聚光线）和凹透镜（发散光线）。</p>
           </article>
           <article>
-            <h3>2. 焦距改变会怎样？</h3>
-            <p>焦距越短，透镜会让光线偏折得更强，光线更快汇聚；焦距越长，光线偏折更弱，汇聚点更远。</p>
+            <h3>2. 焦距的定义</h3>
+            <p>焦距 f 是透镜光心到焦点 F 的距离。平行于主光轴的光线经过凸透镜后，会汇聚到焦点；经过凹透镜后，光线的反向延长线会汇聚到虚焦点。</p>
           </article>
           <article>
             <h3>3. 薄透镜公式</h3>
-            <p>当物体在透镜左侧时，可用 <code>1/f = 1/u + 1/v</code> 估算像距，其中 u 是物距，v 是像距。</p>
+            <p>薄透镜成像遵循公式：<code>1/f = 1/u + 1/v</code>，其中 u 是物距，v 是像距，f 是焦距。符号规则：实物 u > 0，实像 v > 0，虚像 v < 0。</p>
           </article>
           <article>
-            <h3>4. 光的散射</h3>
-            <p>空气、水雾或尘埃中的微粒会把部分光向不同方向散开，所以我们能看到光束路径。画面中的微小亮点就是散射的可视化。</p>
+            <h3>4. 放大倍率</h3>
+            <p>放大倍率 m = -v/u。m > 0 表示正立像，m < 0 表示倒立像；|m| > 1 表示放大，|m| < 1 表示缩小。</p>
           </article>
+        </div>
+
+        <div class="knowledge-section-detail">
+          <h3>凸透镜成像规律</h3>
+          <div class="rule-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>物距 u</th>
+                  <th>像距 v</th>
+                  <th>像的性质</th>
+                  <th>应用实例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>u > 2f</td>
+                  <td>f < v < 2f</td>
+                  <td>倒立、缩小、实像</td>
+                  <td>照相机</td>
+                </tr>
+                <tr>
+                  <td>u = 2f</td>
+                  <td>v = 2f</td>
+                  <td>倒立、等大、实像</td>
+                  <td>精确测量</td>
+                </tr>
+                <tr>
+                  <td>f < u < 2f</td>
+                  <td>v > 2f</td>
+                  <td>倒立、放大、实像</td>
+                  <td>投影仪</td>
+                </tr>
+                <tr>
+                  <td>u = f</td>
+                  <td>v → ∞</td>
+                  <td>不成像</td>
+                  <td>探照灯</td>
+                </tr>
+                <tr>
+                  <td>u < f</td>
+                  <td>v < 0</td>
+                  <td>正立、放大、虚像</td>
+                  <td>放大镜</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="knowledge-section-detail">
+          <h3>凹透镜成像规律</h3>
+          <p>凹透镜对光线起发散作用，无论物体位于何处，凹透镜始终形成正立、缩小的虚像。虚像位于物体同侧，像距始终小于物距。</p>
+          <p><strong>应用：</strong>近视眼镜、门镜（猫眼）、广角镜头等。</p>
+        </div>
+
+        <div class="knowledge-section-detail">
+          <h3>球面镜成像规律</h3>
+          <p>球面镜分为凸面镜和凹面镜：</p>
+          <ul>
+            <li><strong>凸面镜：</strong>发散光线，形成正立、缩小的虚像，视野广阔。应用：汽车后视镜、街角反光镜。</li>
+            <li><strong>凹面镜：</strong>汇聚光线，成像规律与凸透镜类似。应用：太阳灶、手电筒反光碗、望远镜物镜。</li>
+          </ul>
+          <p>球面镜公式：<code>1/f = 1/u + 1/v</code>，其中 f = R/2（R 为曲率半径）。</p>
+        </div>
+
+        <div class="knowledge-section-detail">
+          <h3>光线的三条特殊路径</h3>
+          <ol>
+            <li><strong>平行于主光轴的光线：</strong>经过凸透镜后过焦点；经过凹透镜后发散，反向延长线过虚焦点。</li>
+            <li><strong>过焦点的光线：</strong>经过凸透镜后平行于主光轴；指向凹透镜另一侧虚焦点的光线经过后平行于主光轴。</li>
+            <li><strong>过光心的光线：</strong>传播方向不变。</li>
+          </ol>
+        </div>
+
+        <div class="knowledge-section-detail">
+          <h3>光的散射现象</h3>
+          <p>光的散射是指光线遇到微小颗粒（如空气中的尘埃、水雾）时，向各个方向传播的现象。这就是为什么我们能看到光束的路径。本实验中的微小亮点就是散射的可视化效果。</p>
+        </div>
+
+        <div class="knowledge-section-detail">
+          <h3>实像与虚像的区别</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>特性</th>
+                <th>实像</th>
+                <th>虚像</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>形成原因</td>
+                <td>实际光线汇聚</td>
+                <td>光线反向延长线汇聚</td>
+              </tr>
+            <tr>
+                <td>能否用光屏承接</td>
+                <td>能</td>
+                <td>不能</td>
+              </tr>
+              <tr>
+                <td>位置</td>
+                <td>与物体异侧</td>
+                <td>与物体同侧</td>
+              </tr>
+              <tr>
+                <td>凸透镜成像</td>
+                <td>u > f</td>
+                <td>u < f</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
     </main>
